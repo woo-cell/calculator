@@ -72,6 +72,7 @@ function writeCurrent(event) {
 let operatorButton = document.querySelectorAll(".operator");
 operatorButton.forEach((button) => button.addEventListener("click", storeOperator));
 function storeOperator(e) {
+    enableEqual();
     enableDecimal();
     operator = e.target.id;
     numberOne = Number(currentOperand.textContent);
@@ -88,7 +89,7 @@ const equal = document.getElementById("equal");
 equal.addEventListener("click", calculate);
 
 function calculate(){
-
+    disableEqual();
     storeSecondValue();
     lastOperand.textContent += String(numberTwo) + "=";
     currentOperand.textContent = "";
@@ -123,3 +124,10 @@ function deleteLast() {
     currentOperand.textContent = newStr;
 }
 
+function disableEqual() {
+    equal.disabled = true;
+}
+
+function enableEqual() {
+    equal.disabled = false;
+}
